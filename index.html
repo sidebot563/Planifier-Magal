@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Planning Magal</title>
+
+  <style>
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #fdfdfd;
+  margin: 0;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+header {
+  background-color: #27ae60;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+header p {
+  margin: 8px 0 0;
+  font-size: 1.2em;
+}
+
+main {
+  padding: 20px;
+  animation: fadeInUp 1s ease-out;
+}
+
+footer {
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 15px 10px;
+  margin-top: 50px;
+}
+
+footer a {
+  color: #ecf0f1;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #27ae60;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #219150;
+  transform: translateY(-1px);
+}
+
+table {
+  width: 95%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+th {
+  background-color: #2c3e50;
+  color: white;
+
+}
+
+th, td {
+  border: 1px solid #2c3e50;
+  padding: 6px;
+  text-align: center;
+}
+
+td input, td select {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  padding: 4px;
+  font-size: 0.9em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #2c3e50;
+  margin: 40px auto;
+  width: 90%;
+}
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      background-color: #27ae60;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #219150;
+    }
+
+    #formulaireSection {
+      display: none;
+    }
+
+    hr {
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>  
+      <h1>🕌 Planning Magal</h1>
+    <p>Organisez votre dahira avec efficacité</p>
+</header>
+
+  <h1>Tout planifier ici</h1>
+  <main id="mainContent">
+  <button onclick="afficherFormulaire()">Planifier</button>
+
+  <div id="formulaireSection">
+
+    <h2>📋 Liste des Membres & Cotisations</h2>
+    <table id="membresTable">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Montant</th>
+          <th>Payé ?</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button onclick="ajouterMembre()">➕ Ajouter un membre</button>
+    
+    <hr />
+    <h2>🛠 Tâches & Responsabilités</h2>
+    <table id="tachesTable">
+      <thead>
+        <tr>
+          <th>Tâche</th>
+          <th>Responsable</th>
+          <th>Équipe</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button onclick="ajouterTache()">➕ Ajouter une tâche</button>
+
+    <hr />
+    <h3>👥 Équipes & Membres</h3>
+    <table id="equipesDynTable">
+      <thead>
+        <tr>
+          <th>Équipe</th>
+          <th>Membres</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button onclick="ajouterEquipe()">➕ Ajouter une équipe</button>
+
+<hr />
+<h3>🚌 Départ & Arrivée</h3>
+<table id="trajetsTable">
+  <thead>
+    <tr>
+      <th>Lieu</th>
+      <th>Date</th>
+      <th>Heure</th>
+      <th>Responsable</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<button onclick="ajouterTrajet()">➕ Ajouter un trajet</button>
+<button onclick="envoyerWhatsApp()">📤 Envoyer par WhatsApp</button>
+<button onclick="exporterPDFComplet()">Exporter le Planning complet en PDF</button>
+  </div>
+
+  </main>
+
+    <footer>
+    <p>✨ Créé par Abdoulaye Ndiaye | Contact : <a href="mailto: Abdound565@gmail.com">Envoyer un email</a></p>
+    <p>WhatsApp <a href="https://wa.me/221756495631">Envoyer un message</a></p>
+    <p>Créé un logo : <a href="https://wa.me/221756495631">Infos</a></p>
+     <p>N'hésitez pas à envoyer un message</p>
+
+  </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+
+  <script>
+    function afficherFormulaire() {
+      document.getElementById("formulaireSection").style.display = "block";
+    }
+
+    
+    let membres = JSON.parse(localStorage.getItem("membres")) || [];
+
+    function afficherMembres() {
+      const tbody = document.querySelector("#membresTable tbody");
+      tbody.innerHTML = "";
+      membres.forEach((membre, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td><input value="${membre.nom}" onchange="modifierMembre(${index}, 'nom', this.value)" /></td>
+          <td><input type="number" value="${membre.montant}" onchange="modifierMembre(${index}, 'montant', this.value)" /></td>
+          <td><input type="checkbox" ${membre.statut === 'Payé' ? 'checked' : ''} onchange="modifierMembre(${index}, 'statut', this.checked ? 'Payé' : 'Non payé')" /></td>
+          <td><button onclick="supprimerMembre(${index})">🗑</button></td>
+        `;
+        tbody.appendChild(row);
+      });
+      localStorage.setItem("membres", JSON.stringify(membres));
+    }
+
+    function ajouterMembre() {
+      membres.push({ nom: "", montant: 0, statut: "Non payé" });
+      afficherMembres();
+    }
+
+    function modifierMembre(index, champ, valeur) {
+      membres[index][champ] = valeur;
+      localStorage.setItem("membres", JSON.stringify(membres));
+    }
+
+    function supprimerMembre(index) {
+      membres.splice(index, 1);
+      afficherMembres();
+    }
+
+    afficherMembres();
+
+    let taches = JSON.parse(localStorage.getItem("taches")) || [];
+
+    function afficherTaches() {
+      const tbody = document.querySelector("#tachesTable tbody");
+      tbody.innerHTML = "";
+      taches.forEach((tache, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td><input value="${tache.nom}" onchange="modifierTache(${index}, 'nom', this.value)" /></td>
+          <td><input value="${tache.responsable}" onchange="modifierTache(${index}, 'responsable', this.value)" /></td>
+          <td>
+            <select onchange="modifierTache(${index}, 'equipe', this.value)">
+              ${genererOptionsAlphabet(tache.equipe)}
+            </select>
+          </td>
+          <td><input type="date" value="${tache.date}" onchange="modifierTache(${index}, 'date', this.value)" /></td>
+          <td><input type="time" value="${tache.heure}" onchange="modifierTache(${index}, 'heure', this.value)" /></td>
+          <td><button onclick="supprimerTache(${index})">🗑</button></td>
+        `;
+        tbody.appendChild(row);
+      });
+      localStorage.setItem("taches", JSON.stringify(taches));
+    }
+
+    function ajouterTache() {
+      taches.push({ nom: "", responsable: "", equipe: "", date: "", heure: "" });
+      afficherTaches();
+    }
+
+    function modifierTache(index, champ, valeur) {
+      taches[index][champ] = valeur;
+      localStorage.setItem("taches", JSON.stringify(taches));
+    }
+
+    function supprimerTache(index) {
+      taches.splice(index, 1);
+      afficherTaches();
+    }
+
+    function genererOptionsAlphabet(selected = "") {
+      let options = "";
+      for (let i = 65; i <= 90; i++) {
+        let lettre = String.fromCharCode(i);
+        options += `<option value="${lettre}" ${selected === lettre ? "selected" : ""}>${lettre}</option>`;
+      }
+      return options;
+    }
+
+    afficherTaches();
+
+
+    let equipesDyn = JSON.parse(localStorage.getItem("equipesDyn")) || [];
+
+    function afficherEquipesDyn() {
+      const tbody = document.querySelector("#equipesDynTable tbody");
+      tbody.innerHTML = "";
+      equipesDyn.forEach((equipe, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td><input value="${equipe.nom}" onchange="modifierEquipeDyn(${index}, 'nom', this.value)" /></td>
+          <td><input value="${equipe.membres}" onchange="modifierEquipeDyn(${index}, 'membres', this.value)" /></td>
+          <td><button onclick="supprimerEquipe(${index})">🗑</button></td>
+        `;
+        tbody.appendChild(row);
+      });
+      localStorage.setItem("equipesDyn", JSON.stringify(equipesDyn));
+    }
+
+    function ajouterEquipe() {
+      equipesDyn.push({ nom: "", membres: "" });
+      afficherEquipesDyn();
+    }
+
+    function modifierEquipeDyn(index, champ, valeur) {
+      equipesDyn[index][champ] = valeur;
+      localStorage.setItem("equipesDyn", JSON.stringify(equipesDyn));
+    }
+
+    function supprimerEquipe(index) {
+      equipesDyn.splice(index, 1);
+      afficherEquipesDyn();
+    }
+
+    afficherEquipesDyn();
+    let trajets = JSON.parse(localStorage.getItem("trajets")) || [];
+
+function afficherTrajets() {
+  const tbody = document.querySelector("#trajetsTable tbody");
+  tbody.innerHTML = "";
+  trajets.forEach((trajet, index) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td><input value="${trajet.lieu}" onchange="modifierTrajet(${index}, 'lieu', this.value)" /></td>
+      <td><input type="date" value="${trajet.date}" onchange="modifierTrajet(${index}, 'date', this.value)" /></td>
+      <td><input type="time" value="${trajet.heure}" onchange="modifierTrajet(${index}, 'heure', this.value)" /></td>
+      <td><input value="${trajet.responsable}" onchange="modifierTrajet(${index}, 'responsable', this.value)" /></td>
+      <td><button onclick="supprimerTrajet(${index})">🗑</button></td>
+    `;
+    tbody.appendChild(row);
+  });
+  localStorage.setItem("trajets", JSON.stringify(trajets));
+}
+
+function ajouterTrajet() {
+  trajets.push({ lieu: "", date: "", heure: "", responsable: "" });
+  afficherTrajets();
+}
+
+function modifierTrajet(index, champ, valeur) {
+  trajets[index][champ] = valeur;
+  localStorage.setItem("trajets", JSON.stringify(trajets));
+}
+
+function supprimerTrajet(index) {
+  trajets.splice(index, 1);
+  afficherTrajets();
+}
+
+function envoyerWhatsApp() {
+  if (trajets.length === 0) {
+    alert("Aucun trajet à envoyer !");
+    return;
+  }
+
+  let message = "🚌 Planning Départ & Arrivée Magal 🕌\n\n";
+  trajets.forEach((t, i) => {
+    message +=` 📍 *${t.lieu}* — ${t.date} à ${t.heure} (Responsable: ${t.responsable})\n`;
+  });
+
+  const whatsappURL =` https://wa.me/?text=${encodeURIComponent(message)}`;
+
+  window.open(whatsappURL, "_blank");
+}
+
+afficherTrajets();
+
+function exporterPDFComplet() {
+window.jsPDF = window.jspdf.jsPDF;
+  const doc = new jsPDF();
+
+  const membres = JSON.parse(localStorage.getItem("membres")) || [];
+  const taches = JSON.parse(localStorage.getItem("taches")) || [];
+  const trajets = JSON.parse(localStorage.getItem("trajets")) || [];
+
+  doc.setFontSize(14);
+  doc.text("👥 Membres & Cotisations", 14, 15);
+
+  if (membres.length > 0) {
+    const membresData = membres.map((m, i) => [
+      i + 1,
+      m.nom || "—",
+      m.montant || "—",
+      m.statut || "—",
+    ]);
+
+    doc.autoTable({
+      head: [["#", "Nom", "Montant", "Statut"]],
+      body: membresData,
+      startY: 20,
+    });
+  }
+
+  let y = doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 30;
+
+  doc.setFontSize(14);
+  doc.text("🛠 Tâches & Responsables", 14, y);
+
+  if (taches.length > 0) {
+    const tachesData = taches.map((t, i) => [
+      i + 1,
+      t.nom || "—",
+      t.responsable || "—",
+      t.equipe || "—",
+      t.date || "—",
+      t.heure || "—",
+    ]);
+
+    doc.autoTable({
+      head: [["#", "Tâche", "Responsable", "Équipe", "Date", "Heure"]],
+      body: tachesData,
+      startY: y + 5,
+    });
+  }
+
+  y = doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : y + 40;
+
+  doc.setFontSize(14);
+  doc.text("🚌 Départ & Arrivée", 14, y);
+
+  if (trajets.length > 0) {
+    const trajetsData = trajets.map((t, i) => [
+      i + 1,
+      t.lieu || "—",
+      t.date || "—",
+      t.heure || "—",
+      t.responsable || "—",
+    ]);
+
+    doc.autoTable({
+      head: [["#", "Lieu", "Date", "Heure", "Responsable"]],
+      body: trajetsData,
+      startY: y + 5,
+    });
+  }
+
+  doc.save("planning-magal.pdf");
+}
+  </script>
+
+</body>
+</html>
